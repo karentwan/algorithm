@@ -1,5 +1,11 @@
 package cn.karent.ds;
 
+/**
+ * 浼樺厛闃熷垪
+ * @author wan
+ *
+ * @param <T>
+ */
 public class PriorQueue<T> {
 	
 	public interface Compare {
@@ -32,7 +38,7 @@ public class PriorQueue<T> {
 	private int n = 0;
 	
 	/**
-	 * 调整优先队列的容量
+	 * 闃熷垪鎵╁
 	 */
 	private void resize() {
 		Object[] tmp = data;
@@ -46,7 +52,7 @@ public class PriorQueue<T> {
 	private Compare c = new CompareInt();
 	
 	/**
-	 * 最小值上浮
+	 * 涓婃诞
 	 */
 	private void up() {
 		int children = n - 1;
@@ -60,7 +66,7 @@ public class PriorQueue<T> {
 	}
 	
 	/**
-	 * 最大值下沉
+	 * 涓嬫矇
 	 */
 	private void down() {
 		int p = 0;

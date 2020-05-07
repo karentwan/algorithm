@@ -2,7 +2,7 @@ package cn.karent.ds;
 import java.lang.Exception;
 
 /**
- * я╜╩╥╤сап
+ * Е╬╙Г▌╞И≤÷Е┬≈, Д╦╜И≈╢И≤÷Е┬≈Е╝╧И┤▐Д╦█Е▐╞Е├█Ф■╧Е▐≤
  * @author wan
  *
  * @param <T>
@@ -29,7 +29,7 @@ public class Queue<T> {
 	
 	public void enqueue(Object item) throws Exception{
 		if( (rear + 1) % capcity == front ) {
-			throw new Exception("╤сапрябЗ");
+			throw new Exception("О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫");
 		}
 		data[rear] = item;
 		rear = (rear + 1) % capcity;

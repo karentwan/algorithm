@@ -1,5 +1,11 @@
 package cn.karent.sort;
 
+
+/**
+ * 数据比较接口的默认实现，默认比较的数字
+ * @author wan
+ *
+ */
 public class CompareIntImp implements Compare{
 
 	@Override

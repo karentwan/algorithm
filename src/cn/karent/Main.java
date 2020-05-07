@@ -65,7 +65,7 @@ public class Main {
 //		while( !d.isEmpty() ) {
 //			System.out.print(d.dequeue() + " ");
 //		}
-//		System.out.println("\n------------ÒÔÕ»·ÃÎÊ\n");
+//		System.out.println("\n------------ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½\n");
 //		for(int i = 0; i < data.length; i++) {
 ////			System.out.print(i);
 //			d.push(data[i]);
@@ -95,7 +95,7 @@ public class Main {
 			}
 			
 		};
-		// Ã°ÅÝÅÅÐò
+		// å†’æ³¡æŽ’åº
 //		BubbleSort<Integer> b1 = new BubbleSort<Integer>(c);
 //		print(data);
 //		b1.sort(data);
@@ -108,18 +108,18 @@ public class Main {
 //		print(data);
 //		i.sort(data);
 //		print(data);
-//		ShellSort<Integer> s = new ShellSort<Integer>(c);
-//		print(data);
-//		s.sort(data);
-//		print(data);
+		ShellSort<Integer> s = new ShellSort<Integer>();
+		print(data);
+		s.sort(data);
+		print(data);
 //		Sort<Integer> q = new QuickSort<Integer>(c);
 //		print(data);
 //		q.sort(data);
 //		print(data);
-		HeapSort<Integer> h = new HeapSort<Integer>(c);
-		print(data);
-		h.sort(data);
-		print(data);
+//		HeapSort<Integer> h = new HeapSort<Integer>(c);
+//		print(data);
+//		h.sort(data);
+//		print(data);
 	}
 	
 	public static void main(String[] args) throws Exception{

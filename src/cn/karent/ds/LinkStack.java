@@ -1,7 +1,7 @@
 package cn.karent.ds;
 
 /**
- * ÒÔÁ´±íĞÎÊ½´æ´¢µÄÕ»
+ * ä»¥é“¾è¡¨å½¢å¼å­˜å‚¨çš„æ ˆ
  * @author wan
  *
  * @param <T>

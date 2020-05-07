@@ -13,10 +13,10 @@ public class HeapSort<T> implements Sort<T> {
 	}
 	
 	/**
-	 * �����󶥶�
-	 * @param data
-	 * @param m
-	 * @param n
+	 * 首元素沿着完全二叉树方式下沉
+	 * @param data 要调整的数组
+	 * @param m 要调整的首元素
+	 * @param n 要调整的最后一个元素
 	 */
 	private void down(T[] data, int m, int n) {
 		T tmp = data[m];
@@ -43,7 +43,7 @@ public class HeapSort<T> implements Sort<T> {
 	public void sort(T[] data) {
 		// TODO Auto-generated method stub
 		int i = (data.length - 2) / 2;
-//		���ɴ󶥶�
+//		构建大顶堆
 		while( i >= 0) {
 			down(data, i, data.length - 1);
 			i--;

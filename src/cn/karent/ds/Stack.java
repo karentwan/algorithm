@@ -1,7 +1,7 @@
 package cn.karent.ds;
 
 /**
- * ջ
+ * 栈
  * @author wan
  *
  * @param <T>
