@@ -1,4 +1,6 @@
 package cn.karent.ds;
+import cn.karent.sort.Compare;
+import cn.karent.sort.CompareIntImp;
 
 /**
  * 优先队列
@@ -8,35 +10,24 @@ package cn.karent.ds;
  */
 public class PriorQueue<T> {
 	
-	public interface Compare {
-		public int compare(Object o1, Object o2);
-	}
-	
-	private class CompareInt implements Compare {
-		
-		public int compare(Object o1, Object o2) {
-			int item1 = (Integer)o1;
-			int item2 = (Integer)o2;
-			return item1 - item2;
-		}
-		
-	}
-	
-	public PriorQueue() {
-		
-	}
-	
-	public PriorQueue(Compare c) {
-		this.c = c;
-	}
+	private Compare c = null;
 	
 	private final static int EXPAND = 20;
 	
 	private int capcity = 20;
 	
 	private Object[] data = new Object[capcity];
+	
 	private int n = 0;
 	
+	public PriorQueue() {
+		c = new CompareIntImp();
+	}
+	
+	public PriorQueue(Compare c) {
+		this.c = c;
+	}
+
 	/**
 	 * 队列扩容
 	 */
@@ -48,8 +39,6 @@ public class PriorQueue<T> {
 		}
 		capcity += EXPAND;
 	}
-	
-	private Compare c = new CompareInt();
 	
 	/**
 	 * 上浮

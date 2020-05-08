@@ -43,7 +43,7 @@ public class HeapSort<T> implements Sort<T> {
 	public void sort(T[] data) {
 		// TODO Auto-generated method stub
 		int i = (data.length - 2) / 2;
-//		构建大顶堆
+		// 构建大顶堆
 		while( i >= 0) {
 			down(data, i, data.length - 1);
 			i--;

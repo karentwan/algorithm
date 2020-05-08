@@ -29,7 +29,7 @@ public class Queue<T> {
 	
 	public void enqueue(Object item) throws Exception{
 		if( (rear + 1) % capcity == front ) {
-			throw new Exception("��������");
+			throw new Exception("队列已满");
 		}
 		data[rear] = item;
 		rear = (rear + 1) % capcity;
