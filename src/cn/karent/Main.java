@@ -2,7 +2,8 @@ package cn.karent;
 import cn.karent.ds.*;
 import java.lang.Exception;
 import cn.karent.sort.*;
-
+import cn.karent.string.*;
+import cn.karent.tree.*;
 
 class Data {
 	int item;
@@ -16,7 +17,7 @@ class Data {
 public class Main {
 	
 	public static void ds() throws Exception{
-		int[] data = {1, 2, 3, 8, 9, 5, 6, 4, 3};
+		int[] data = {49, 38, 65, 97, 76, 13, 27, 27, 37};
 		Compare c = new Compare() {
 			@Override
 			public int compare(Object o1, Object o2) {
@@ -154,8 +155,22 @@ public class Main {
 		printData(d);
 	}
 	
+	public static void str() {
+		KMP k = new KMP("abd");
+		int loc = k.match("abaabcac");
+		System.out.println(loc);
+	}
+	
+	public static void tree() {
+		int[] data = {7, 5, 2, 4, 7, 5};
+		HuffmanTree h = new HuffmanTree(data);
+		h.generateHuffmanTree();
+	}
+	
 	public static void main(String[] args) throws Exception{
 //		sort();
-		ds();
+//		ds();
+//		str();
+		tree();
 	}
 }

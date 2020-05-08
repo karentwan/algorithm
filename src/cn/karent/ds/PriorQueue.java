@@ -41,13 +41,13 @@ public class PriorQueue<T> {
 	}
 	
 	/**
-	 * 上浮
+	 * 元素上浮，默认是小元素
 	 */
 	private void up() {
 		int children = n - 1;
 		Object t = data[n-1];
 		int i = (children - 1) / 2;  
-		for(; children > 0 && c.compare(t, data[i]) > 0; i = (i - 1) / 2) {
+		for(; children > 0 && c.compare(t, data[i]) < 0; i = (i - 1) / 2) {
 			data[children] = data[i];
 			children = i;
 		}
@@ -55,16 +55,16 @@ public class PriorQueue<T> {
 	}
 	
 	/**
-	 * 下沉
+	 * 元素下沉, 默认是大元素
 	 */
 	private void down() {
 		int p = 0;
 		int i = 1;
 		Object t = data[0];
 		for( ; i <= n-1; i = 2 * i + 1) {
-			if( c.compare(data[i], data[i+1]) < 0) 
+			if( c.compare(data[i], data[i+1]) > 0) 
 				i++;
-			if( c.compare(t, data[i]) > 0)
+			if( c.compare(t, data[i]) < 0)
 				break;
 			data[p] = data[i];
 			p = i;
@@ -82,6 +82,8 @@ public class PriorQueue<T> {
 	}
 	
 	public T dequeue() {
+		if( isEmpty() )
+			return null;
 		T item = (T) data[0];
 		data[0] = data[n-1];
 		n--;
