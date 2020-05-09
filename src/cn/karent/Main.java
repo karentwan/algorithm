@@ -170,7 +170,7 @@ public class Main {
 	
 	public static void other() throws Exception{
 		Calc c = new Calc();
-		float result = c.calc("(4*(21+30))-80/21");
+		float result = c.calc("(4*(21.4+3.22))-80/20");
 		System.out.println("表达式求解的结果:" + result);
 //		c.calc("123456789");
 	}

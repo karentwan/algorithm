@@ -58,7 +58,7 @@ public class Calc {
 	private int gt(char a, char b){
 		int indexA = getIndex(a);
 		int indexB = getIndex(b);
-		assert indexA != -1 || indexB != -1 : "出现了未识别的操作符";
+		assert indexA != -1 && indexB != -1 : "出现了未识别的操作符";
 		return priors[indexA][indexB];
 	}
 	
@@ -85,9 +85,7 @@ public class Calc {
 	
 	private boolean isDigital(String a) {
 		Matcher m = reg.matcher(a);
-		if( !m.find() ) 
-			return true;
-		return false;
+		return !m.find();
 	}
 	
 	private boolean isOp(char a) {
