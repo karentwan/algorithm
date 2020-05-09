@@ -11,15 +11,6 @@ public class Calc {
 	private char[] operator = {'+', '-', '*', '/', '(', ')', '#'};
 	
 	// 1表示大于, 0表示等于, -1表示小于, -2表示不合法
-//	private int[][] priors = {	{1, 1, -1,-1,-1, 1, 1},
-//								{1, 1, -1,-1,-1, 1, 1},
-//								{1, 1, 1, 1, -1, 1, 1},
-//								{1, 1, 1, 1, -1, 1, 1},
-//								{-1,-1,-1,-1,-1, 0, -2},
-//								{ 1, 1, 1, 1, -2, 1, 1},
-//								{-1,-1,-1,-1,-1, -2, 0}};
-	
-	// 表达式优先级改版, 横坐标是新输入的字符, 纵坐标是栈顶字符
 	private int[][] priors = {	{-1,-1,-1,-1, 1, -2, 1},
 								{-1, -1, -1,-1, 1, -2, 1},
 								{1, 1, -1, -1, 1, -2, 1},
@@ -32,12 +23,12 @@ public class Calc {
 	
 	public Calc() {
 		// 生成正则表达式
-		String m = "[^0123456789\\.]";
-		reg = Pattern.compile(m);
+		String regStr = "[^0123456789\\.]";
+		reg = Pattern.compile(regStr);
 	}
 	
 	/**
-	 * 根据字符a得到其在symbol数组中的下标
+	 * 根据字符a得到其在operator数组中的下标
 	 * @param a 要获取下标的字符
 	 * @return 字符a的下标
 	 */
@@ -62,7 +53,7 @@ public class Calc {
 		return priors[indexA][indexB];
 	}
 	
-	private float operateUseOp(float n1, float n2, char op) {
+	private float operateUseOp(float n1, char op, float n2) {
 		float result = 0;
 		switch( op ) {
 			case '+':
@@ -89,25 +80,12 @@ public class Calc {
 	}
 	
 	private boolean isOp(char a) {
-		boolean flag = true;
-		switch ( a ) {
-		case '+':
-			break;
-		case '-':
-			break;
-		case '*':
-			break;
-		case '/':
-			break;
-		case '(':
-			break;
-		case ')':
-			break;
-		case '#':
-			break;
-		default:
-			flag = false;
-			break;
+		boolean flag = false;
+		for(int i = 0; i < operator.length; i++) {
+			if( a == operator[i]) {
+				flag = true;
+				break;
+			}
 		}
 		return flag;
 	}
@@ -142,7 +120,6 @@ public class Calc {
 		Stack<Float> numberStack = new Stack<Float>();
 		exp = exp + "#";
 		opStack.push('#');
-//		char[] strs = exp.toCharArray();
 		String[] strs = splitFromOp(exp);
 		String tmp = strs[0];
 		int i = 1;
@@ -155,20 +132,20 @@ public class Calc {
 				char op = opStack.peek();
 				char newOp = tmp.toCharArray()[0];
 				int flag = gt(newOp, op);
-				if( flag == -1) {  // 新入栈的操作符小于上一次入栈的操作符，故计算上一个操作符的
+				if( flag == -1) {  // newOp小于op, 此时应计算
 					float n1 = numberStack.pop();
 					float n2 = numberStack.pop();
 					op = opStack.pop();
-					float result = operateUseOp(n2, n1, op);
+					float result = operateUseOp(n2, op, n1);
 					numberStack.push(result);
 					if( newOp != '#' && newOp != ')') {
 						opStack.push(tmp);
 						tmp = strs[i++];
 					} 
-				} else if( flag == 1) {
+				} else if( flag == 1) {  // newOp大于op, 此时操作符进栈
 					opStack.push(newOp);
 					tmp = strs[i++];
-				} else if( flag == 0){
+				} else if( flag == 0){  // newOp等于op, 此时op出栈
 					opStack.pop();
 					if( newOp == ')')
 						tmp = strs[i++];

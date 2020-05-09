@@ -15,10 +15,6 @@ public class KMP {
 	// next数组
 	private int[] next;
 	
-	public KMP() {
-		
-	}
-	
 	public KMP(String str) {
 		this.str = str.toCharArray();
 		generateNext();
@@ -35,8 +31,8 @@ public class KMP {
 	
 	/**
 	 * 根据母串生成next数组
-	 * 生成next数组的诀窍，当str[j]与str[k]相等，那么说明
-	 * next[j+1] = next[k] + 1
+	 * 生成next数组的诀窍，当str[j]与str[i]相等，那么说明
+	 * next[j+1] = next[i] + 1
 	 */
 	private void generateNext() {
 		length = str.length;
