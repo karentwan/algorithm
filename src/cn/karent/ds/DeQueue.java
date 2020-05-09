@@ -54,7 +54,7 @@ public class DeQueue<T> {
 	 * @return
 	 */
 	public T getLast() {
-		if( !isEmpty() )
+		if( isEmpty() )
 			return null;
 		Node tmp = end.pre;
 		T d = (T) tmp.data;
@@ -68,7 +68,7 @@ public class DeQueue<T> {
 	 * @return
 	 */
 	public T getFirst() {
-		if( !isEmpty() )
+		if( isEmpty() )
 			return null;
 		Node tmp = head.next;
 		T d = (T) tmp.data;
@@ -82,7 +82,7 @@ public class DeQueue<T> {
 	 * @return
 	 */
 	public T peekLast() {
-		if( !isEmpty() )
+		if( isEmpty() )
 			return null;
 		T d = (T) end.pre.data;
 		return d;
@@ -93,7 +93,7 @@ public class DeQueue<T> {
 	 * @return
 	 */
 	public T peekFirst() {
-		if( !isEmpty() )
+		if( isEmpty() )
 			return null;
 		T d = (T) head.next.data;
 		return d;

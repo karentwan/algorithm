@@ -4,6 +4,7 @@ import java.lang.Exception;
 import cn.karent.sort.*;
 import cn.karent.string.*;
 import cn.karent.tree.*;
+import cn.karent.other.*;
 
 class Data {
 	int item;
@@ -167,10 +168,18 @@ public class Main {
 		h.generateHuffmanTree();
 	}
 	
+	public static void other() throws Exception{
+		Calc c = new Calc();
+		float result = c.calc("(4*(21+30))-80/21");
+		System.out.println("表达式求解的结果:" + result);
+//		c.calc("123456789");
+	}
+	
 	public static void main(String[] args) throws Exception{
 //		sort();
 //		ds();
 //		str();
-		tree();
+//		tree();
+		other();
 	}
 }

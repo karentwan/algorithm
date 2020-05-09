@@ -45,7 +45,7 @@ public class Stack<T> {
 	public T peek() {
 		if( top < 0)
 			return null;
-		return (T) data[top];
+		return (T) data[top - 1];
 	}
 	
 

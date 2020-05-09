@@ -36,7 +36,7 @@ public class Queue<T> {
 	}
 	
 	public T dequeue() {
-		if( rear == front)
+		if( isEmpty() )
 			return null;
 		T d = (T) data[front];
 		front = (front + 1) % capcity;
@@ -44,7 +44,7 @@ public class Queue<T> {
 	}
 	
 	public T getHead() {
-		if( rear == front)
+		if( isEmpty() )
 			return null;
 		return (T) data[front];
 	}
