@@ -3,21 +3,23 @@ import cn.karent.ds.Stack;
 import java.lang.Exception;
 import cn.karent.ds.ArrayList;
 import java.util.regex.*;
-//import java.util.ArrayList;
-
+import java.math.*;
 
 public class Calc {
 	
+	// a表示log
 	private char[] operator = {'+', '-', '*', '/', '(', ')', '#'};
 	
 	// 1表示大于, 0表示等于, -1表示小于, -2表示不合法
-	private int[][] priors = {	{-1,-1,-1,-1, 1, -2, 1},
-								{-1, -1, -1,-1, 1, -2, 1},
-								{1, 1, -1, -1, 1, -2, 1},
-								{1, 1, -1, -1, 1, -2, 1},
-								{1, 1, 1, 1, 1, -2, 1},
-								{ -1, -1, -1, -1, 0, -2, 1},
-								{-1,-1,-1,-1,-1, -2, 0}};
+	private int[][] priors = {	
+								{-1,-1,-1,-1, 1, -2, 1},    // +
+								{-1, -1, -1,-1, 1, -2, 1},  // -
+								{1, 1, -1, -1, 1, -2, 1},   // *
+								{1, 1, -1, -1, 1, -2, 1},   // /
+								{1, 1, 1, 1, 1, -2, 1},     // (
+								{ -1, -1, -1, -1, 0, -2, 1},// )
+								{-1,-1,-1,-1,-1, -2, 0},     // #
+							};
 	
 	private Pattern reg = null; 
 	

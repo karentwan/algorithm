@@ -26,7 +26,7 @@ public class Stack<T> {
 	}
 	
 	public boolean isEmpty() {
-		return (top - 1) < 0 ? true : false;
+		return (top - 1) < 0;
 	}
 	
 	public void push(Object item) {
@@ -37,13 +37,13 @@ public class Stack<T> {
 	}
 	
 	public T pop() {
-		if( (top - 1) < 0)
+		if( isEmpty() )
 			return null;
 		return (T) data[--top];
 	}
 	
 	public T peek() {
-		if( top < 0)
+		if( isEmpty() )
 			return null;
 		return (T) data[top - 1];
 	}

@@ -162,10 +162,37 @@ public class Main {
 		System.out.println(loc);
 	}
 	
+	public static BinaryTreeNode<Character> createCharacterTree() {
+		BinaryTreeNode<Character> A = new BinaryTreeNode<Character>('A');
+		BinaryTreeNode<Character> B = new BinaryTreeNode<Character>('B');
+		BinaryTreeNode<Character> C = new BinaryTreeNode<Character>('C');
+		BinaryTreeNode<Character> D = new BinaryTreeNode<Character>('D');
+		BinaryTreeNode<Character> E = new BinaryTreeNode<Character>('E');
+		BinaryTreeNode<Character> F = new BinaryTreeNode<Character>('F');
+		BinaryTreeNode<Character> G = new BinaryTreeNode<Character>('G');
+		BinaryTreeNode<Character> H = new BinaryTreeNode<Character>('H');
+		A.lchild = B;
+		A.rchild = F;
+		F.rchild = G;
+		B.lchild = C;
+		B.rchild = D;
+		D.lchild = E;
+		D.rchild = H;
+		return A;
+	}
+	
 	public static void tree() {
-		int[] data = {7, 5, 2, 4, 7, 5};
-		HuffmanTree h = new HuffmanTree(data);
-		h.generateHuffmanTree();
+//		int[] data = {7, 5, 2, 4, 7, 5};
+//		HuffmanTree h = new HuffmanTree(data);
+//		h.generateHuffmanTree();
+		BinaryTreeNode<Character> root = createCharacterTree();
+		BinaryTree tree = new BinaryTree();
+//		tree.preOrderTraverseRecursion(root);
+//		tree.inOrderTraverseRecursion(root);
+//		tree.postOrderTraverseRecursion(root);
+//		tree.preOrderTraverse(root);
+//		tree.inOrderTraverse(root);
+		tree.postOrderTraverse(root);
 	}
 	
 	public static void other() throws Exception{
@@ -175,11 +202,12 @@ public class Main {
 //		c.calc("123456789");
 	}
 	
+	
 	public static void main(String[] args) throws Exception{
 //		sort();
 //		ds();
 //		str();
-//		tree();
-		other();
+		tree();
+//		other();
 	}
 }

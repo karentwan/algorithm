@@ -23,8 +23,17 @@ public class LinkStack<T> {
 	}
 	
 	public T pop() {
+		if( isEmpty() )
+			return null;
 		T data = (T) head.next.data;
 		head.next = head.next.next;
+		return data;
+	}
+	
+	public T peek() {
+		if( isEmpty()) 
+			return null;
+		T data = (T) head.next.data;
 		return data;
 	}
 	

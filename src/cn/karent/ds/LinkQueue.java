@@ -26,10 +26,19 @@ public class LinkQueue<T> {
 	}
 	
 	public T dequeue() {
+		if( isEmpty() )
+			return null;
 		T data = (T) front.next.data;
 		front.next = front.next.next;
 		if( front.next == null)
 			rear = front;
+		return data;
+	}
+	
+	public T getHead() {
+		if( isEmpty() ) 
+			return null;
+		T data = (T) front.next.data;
 		return data;
 	}
 	
