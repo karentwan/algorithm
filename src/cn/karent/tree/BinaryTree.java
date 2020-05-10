@@ -7,7 +7,7 @@ public class BinaryTree {
 	 * 以递归方式实现前序遍历
 	 * @param n
 	 */
-	public void preOrderTraverseRecursion(BinaryTreeNode n) {
+	public void preOrderTraverseRecursion(BinaryTreeNode<Character> n) {
 		if( n != null) {
 			System.out.print(n.data);
 			preOrderTraverseRecursion(n.lchild);
@@ -19,7 +19,7 @@ public class BinaryTree {
 	 * 以递归方式实现中序遍历
 	 * @param n
 	 */
-	public void inOrderTraverseRecursion(BinaryTreeNode n) {
+	public void inOrderTraverseRecursion(BinaryTreeNode<Character> n) {
 		if( n != null) {
 			inOrderTraverseRecursion(n.lchild);
 			System.out.print(n.data);
@@ -31,7 +31,7 @@ public class BinaryTree {
 	 * 以递归的方式实现后序遍历
 	 * @param n
 	 */
-	public void postOrderTraverseRecursion(BinaryTreeNode n) {
+	public void postOrderTraverseRecursion(BinaryTreeNode<Character> n) {
 		if( n != null) {
 			postOrderTraverseRecursion(n.lchild);
 			postOrderTraverseRecursion(n.rchild);

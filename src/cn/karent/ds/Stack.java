@@ -48,5 +48,8 @@ public class Stack<T> {
 		return (T) data[top - 1];
 	}
 	
+	public void clearStack() {
+		top = 0;
+	}
 
 }

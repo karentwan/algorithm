@@ -150,10 +150,18 @@ public class Main {
 //		print(data);
 //		h.sort(data);
 //		print(data);
-		HeapSort<Data> h = new HeapSort<Data>(cd);
-		printData(d);
-		h.sort(d);
-		printData(d);
+//		HeapSort<Data> h = new HeapSort<Data>(cd);
+//		printData(d);
+//		h.sort(d);
+//		printData(d);
+//		BucketSort<Integer> b = new BucketSort<Integer>();
+//		print(data);
+//		b.sort(data);
+//		print(data);
+		MergeSort<Integer> m = new MergeSort<Integer>(c);
+		print(data);
+		m.sort(data);
+		print(data);
 	}
 	
 	public static void str() {
@@ -204,10 +212,10 @@ public class Main {
 	
 	
 	public static void main(String[] args) throws Exception{
-//		sort();
+		sort();
 //		ds();
 //		str();
-		tree();
+//		tree();
 //		other();
 	}
 }
