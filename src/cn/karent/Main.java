@@ -240,7 +240,8 @@ public class Main {
 //		System.out.println();
 //		graph.BFSTraverse(0);
 		GraphAlgorithm algo = new GraphAlgorithm();
-		algo.prim();
+//		algo.prim(0);
+		algo.toplogicalSort();
 	}
 	
 	public static void main(String[] args) throws Exception{

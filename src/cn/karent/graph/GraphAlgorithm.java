@@ -1,4 +1,5 @@
 package cn.karent.graph;
+import cn.karent.ds.Stack;
 
 
 public class GraphAlgorithm {
@@ -54,13 +55,15 @@ public class GraphAlgorithm {
 	/**
 	 * 普利姆最小生成树算法
 	 */
-	public void prim() {
+	public void prim(int u) {
 		MGraph<String> graph = createGraph();
 		int n = graph.getVexNumber();
 		VexArcPair[] lowest = new VexArcPair[n];
-		lowest[0] = new VexArcPair(0, 0);
-		for(int i = 1; i < n; i++) {
-			lowest[i] = new VexArcPair(0, graph.getArcWeight(0, i));
+		lowest[u] = new VexArcPair(u, 0);
+		for(int i = 0; i < n; i++) {
+			if( i == u)
+				continue;
+			lowest[i] = new VexArcPair(u, graph.getArcWeight(u, i));
 			if( lowest[i].weight == 0 ) {
 				lowest[i].weight = INFINITY;
 			} 
@@ -80,8 +83,68 @@ public class GraphAlgorithm {
 		}
 	}
 	
+	public MGraph<String> createTopSortGraph() {
+		MGraph<String> graph = new MGraph<String>();
+		graph.setDirected(true);
+		String[] node = {"V1", "V2", "V3", "V4", "V5", "v6"};
+		for(int i = 0; i < node.length; i++) {
+			graph.insertVex(node[i]);
+		}
+		graph.insertArc(0, 1, 1);
+		graph.insertArc(0, 2, 1);
+		graph.insertArc(0, 3, 1);
+		graph.insertArc(2, 1, 1);
+		graph.insertArc(2, 4, 1);
+		graph.insertArc(3, 4, 1);
+		graph.insertArc(5, 3, 1);
+		graph.insertArc(5, 4, 1);
+//		graph.insertArc(4, 5, 1);
+		return graph;
+	}
 	
+	/**
+	 * 拓扑排序, 判断图是否有环
+	 */
+	public void toplogicalSort() {
+		MGraph<String> graph = createTopSortGraph();
+		int n = graph.getVexNumber();
+		int[] indegree = new int[n];
+		// 初始化入度数组
+		for(int i = 0; i < n; i++) {
+			for(int j = graph.firstAdjVex(i); j != -1; j = graph.nextAdjVex(i, j)) {
+				indegree[j]++;
+			}
+		}
+		Stack<Integer> stack = new Stack<Integer>();
+		for(int i = 0; i < indegree.length; i++) {
+			if( indegree[i] == 0) {
+				stack.push(i);
+			}
+		}
+		int count = 0;
+		while( !stack.isEmpty() ) {
+			int v = stack.pop();
+			count++;
+			for(int i = graph.firstAdjVex(v); i != -1; i = graph.nextAdjVex(v, i)) {
+				indegree[i]--;
+				if( indegree[i] == 0) {
+					stack.push(i);
+				}
+			}
+		}
+		if( count >= n ) {
+			System.out.println("图没环");
+		} else {
+			System.out.println("图有环");
+		}
+	}
 	
+	/**
+	 * 地杰斯特拉算法, 最短路径
+	 */
+	public void dijkstra() {
+		
+	}
 	
 	
 	

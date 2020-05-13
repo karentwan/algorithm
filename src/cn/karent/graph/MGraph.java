@@ -22,6 +22,8 @@ public class MGraph<T> {
 	
 	private int capcity = 20;
 	
+	private boolean directed = false;  // 是否是有向图
+	
 	public MGraph() {
 		n = 0;
 		e = 0;
@@ -35,6 +37,14 @@ public class MGraph<T> {
 	 */
 	public int getVexNumber() {
 		return n;
+	}
+	
+	public boolean isDirected() {
+		return this.directed;
+	}
+	
+	public void setDirected(boolean directed) {
+		this.directed = directed;
 	}
 	
 	/**
@@ -84,7 +94,8 @@ public class MGraph<T> {
 			return;
 		}
 		edges[v][w] = weight;
-		edges[w][v] = weight;
+		if( !directed )
+			edges[w][v] = weight;
 		e++;
 	}
 	
