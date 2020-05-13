@@ -126,7 +126,7 @@ public class MGraph<T> {
 		return -1;
 	}
 	
-	private T get(int v) {
+	public T get(int v) {
 		return (T) vertes[v].data;
 	}
 	

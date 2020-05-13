@@ -241,7 +241,8 @@ public class Main {
 //		graph.BFSTraverse(0);
 		GraphAlgorithm algo = new GraphAlgorithm();
 //		algo.prim(0);
-		algo.toplogicalSort();
+//		algo.toplogicalSort();
+		algo.dijkstra(0);
 	}
 	
 	public static void main(String[] args) throws Exception{

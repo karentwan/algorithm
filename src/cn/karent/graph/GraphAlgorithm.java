@@ -39,7 +39,7 @@ public class GraphAlgorithm {
 	}
 	
 	class VexArcPair {
-		int vex;
+		int vex; // parent节点
 		int weight;
 		
 		public VexArcPair() {
@@ -139,19 +139,77 @@ public class GraphAlgorithm {
 		}
 	}
 	
-	/**
-	 * 地杰斯特拉算法, 最短路径
-	 */
-	public void dijkstra() {
-		
+	private MGraph<String> createMinPathGraph() {
+		MGraph<String> graph = new MGraph<String>();
+		graph.setDirected(true);
+		String[] node = {"V0", "V1", "V2", "V3", "v4", "v5"};
+		for(int i = 0; i < node.length; i++) {
+			graph.insertVex(node[i]);
+		}
+		graph.insertArc(0, 2, 10);
+		graph.insertArc(0, 4, 30);
+		graph.insertArc(0, 5, 100);
+		graph.insertArc(1, 2, 5);
+		graph.insertArc(2, 3, 50);
+		graph.insertArc(3, 5, 10);
+		graph.insertArc(4, 3, 20);
+		graph.insertArc(4, 5, 60);
+		return graph;
 	}
 	
+	class MinPath {
+		int parent;
+		int weight;
+		public MinPath() {}
+		
+		public MinPath(int parent, int weight) {
+			this.parent = parent;
+			this.weight = weight;
+		}
+	}
 	
-	
-	
-	
-	
-	
-	
-
+	/**
+	 * 迪杰斯特拉算法, 最短路径
+	 */
+	public void dijkstra(int v) {
+		MGraph<String> graph = createMinPathGraph();
+		int n = graph.getVexNumber();
+		MinPath[] path = new MinPath[n];
+		path[v] = new MinPath(-1, 0);
+		VexArcPair[] lowest = new VexArcPair[n];
+		lowest[v] = new VexArcPair(-1, 0);
+		for(int i = 0; i < n; i++) {
+			if( i != v) {
+				lowest[i] =new VexArcPair(v, graph.getArcWeight(v, i));
+				if( lowest[i].weight == 0) 
+					lowest[i].weight = INFINITY;
+			}
+		}
+		int w = 0;
+		int k = v; // 保存顶点v的值
+		while((w = findMin(lowest)) != -1) {
+			v = lowest[w].vex;
+			int weight = graph.getArcWeight(v, w);
+			path[w] = new MinPath(v, weight);
+			for(int j = graph.firstAdjVex(w); j != -1; j = graph.nextAdjVex(w, j)) {
+				if( lowest[w].weight + graph.getArcWeight(w, j) < lowest[j].weight) {
+					lowest[j].weight = lowest[w].weight + graph.getArcWeight(w, j);
+					lowest[j].vex = w;
+				}
+			}
+			lowest[w].weight = 0;  // lowest[w].weight设为0代表已经找到v到w的最短路径了
+		}
+		v = k;
+		for(int i = 0; i < n; i++) {
+			if(i != v && path[i] != null) {
+				int p = path[i].parent;
+				System.out.print(graph.get(i) + " weight:" + path[i].weight + " ");
+				while( p != -1 ) {
+					System.out.print(graph.get(p) + " weight:" + path[i].weight + " ");
+					p = path[p].parent;
+				}
+				System.out.println();
+			}
+		}
+	}
 }
