@@ -5,6 +5,7 @@ import cn.karent.sort.*;
 import cn.karent.string.*;
 import cn.karent.tree.*;
 import cn.karent.other.*;
+import cn.karent.graph.*;
 
 class Data {
 	int item;
@@ -210,12 +211,42 @@ public class Main {
 //		c.calc("123456789");
 	}
 	
+	public static ALGraph createGraph() {
+		String[] n = {"V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8"};
+//		int[] n = {1, 2, 3, 4, 5, 6, 7, 8};
+//		MGraph<Integer> graph = new MGraph<Integer>();
+		ALGraph graph = new ALGraph();
+		// 插入顶点
+		for(int i = 0; i < n.length; i++) {
+			graph.insertVex(n[i]);
+		}
+		// 插入边
+		graph.insertArc(0, 1);
+		graph.insertArc(0, 2);
+		graph.insertArc(1, 3);
+		graph.insertArc(1, 4);
+		graph.insertArc(2, 5);
+		graph.insertArc(2, 6);
+		graph.insertArc(3, 7);
+		graph.insertArc(4, 7);
+		graph.insertArc(5, 6);
+		return graph;
+	}
+	
+	public static void graph() {
+//		MGraph graph = createGraph();
+		ALGraph graph = createGraph();
+		graph.DFSTraverse(0);
+		System.out.println();
+		graph.BFSTraverse(0);
+	}
 	
 	public static void main(String[] args) throws Exception{
-		sort();
+//		sort();
 //		ds();
 //		str();
 //		tree();
 //		other();
+		graph();
 	}
 }

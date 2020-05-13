@@ -30,8 +30,8 @@ public class KMP {
 	}
 	
 	/**
-	 * 根据母串生成next数组
-	 * 生成next数组的诀窍，当str[j]与str[i]相等，那么说明
+	 * 根据模式串生成next数组, 自己与自己匹配来生成
+	 * 生成next数组的诀窍, 当str[j]与str[i]相等, 那么说明
 	 * next[j+1] = next[i] + 1
 	 */
 	private void generateNext() {
