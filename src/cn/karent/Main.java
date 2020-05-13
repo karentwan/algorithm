@@ -211,34 +211,36 @@ public class Main {
 //		c.calc("123456789");
 	}
 	
-	public static ALGraph createGraph() {
+	public static MGraph createGraph() {
 		String[] n = {"V1", "V2", "V3", "V4", "V5", "V6", "V7", "V8"};
 //		int[] n = {1, 2, 3, 4, 5, 6, 7, 8};
-//		MGraph<Integer> graph = new MGraph<Integer>();
-		ALGraph graph = new ALGraph();
+		MGraph<String> graph = new MGraph<String>();
+//		ALGraph<String> graph = new ALGraph<String>();
 		// 插入顶点
 		for(int i = 0; i < n.length; i++) {
 			graph.insertVex(n[i]);
 		}
 		// 插入边
-		graph.insertArc(0, 1);
-		graph.insertArc(0, 2);
-		graph.insertArc(1, 3);
-		graph.insertArc(1, 4);
-		graph.insertArc(2, 5);
-		graph.insertArc(2, 6);
-		graph.insertArc(3, 7);
-		graph.insertArc(4, 7);
-		graph.insertArc(5, 6);
+		graph.insertArc(0, 1, 1);
+		graph.insertArc(0, 2, 1);
+		graph.insertArc(1, 3, 1);
+		graph.insertArc(1, 4, 1);
+		graph.insertArc(2, 5, 1);
+		graph.insertArc(2, 6, 1);
+		graph.insertArc(3, 7, 1);
+		graph.insertArc(4, 7, 1);
+		graph.insertArc(5, 6, 1);
 		return graph;
 	}
 	
 	public static void graph() {
 //		MGraph graph = createGraph();
-		ALGraph graph = createGraph();
-		graph.DFSTraverse(0);
-		System.out.println();
-		graph.BFSTraverse(0);
+//		ALGraph graph = createGraph();
+//		graph.DFSTraverse(0);
+//		System.out.println();
+//		graph.BFSTraverse(0);
+		GraphAlgorithm algo = new GraphAlgorithm();
+		algo.prim();
 	}
 	
 	public static void main(String[] args) throws Exception{

@@ -30,6 +30,24 @@ public class MGraph<T> {
 	}
 	
 	/**
+	 * 返回节点数量
+	 * @return
+	 */
+	public int getVexNumber() {
+		return n;
+	}
+	
+	/**
+	 * 得到顶点v和顶点w之间的权重
+	 * @param v 顶点
+	 * @param w 顶点
+	 * @return 
+	 */
+	public int getArcWeight(int v, int w) {
+		return edges[v][w];
+	}
+	
+	/**
 	 * 保存图数据的容量增长
 	 */
 	public void grow() {
@@ -60,13 +78,13 @@ public class MGraph<T> {
 		vertes[n++] = node;
 	}
 	
-	public void insertArc(int v, int w) {
+	public void insertArc(int v, int w, int weight) {
 		if( v >= n || w >= n) {
 			System.out.println("没有这个节点");
 			return;
 		}
-		edges[v][w] = 1;
-		edges[w][v] = 1;
+		edges[v][w] = weight;
+		edges[w][v] = weight;
 		e++;
 	}
 	

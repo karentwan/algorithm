@@ -58,6 +58,7 @@ public class ALGraph<T> {
 		vertex[v].firstNode = in;
 		out.next = vertex[w].firstNode;
 		vertex[w].firstNode = out;
+		e++;
 	}
 	
 	public ArcNode firstArc(int v) {
