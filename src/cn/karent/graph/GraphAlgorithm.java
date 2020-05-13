@@ -73,11 +73,12 @@ public class GraphAlgorithm {
 			System.out.print("(" + (lowest[w].vex+1) + ", " + (w+1) + ", " + graph.getArcWeight(lowest[w].vex, w) + ") ");
 			lowest[w].weight = 0;
 			// 更新lowest
-			for(int i = 0; i < n; i++) {
+			for(int i = graph.firstAdjVex(w); i != -1; i = graph.nextAdjVex(w, i)) {
 				int weight = graph.getArcWeight(w, i);
-				if( lowest[i].weight != 0 && weight != 0 && lowest[i].weight > weight) {
+				// lowest[i].weight != 0 代表该节点不在集合U中(U是生成树的节点, S是未加入进来的节点)
+				if( lowest[i].weight != 0 && lowest[i].weight > weight) {
 					lowest[i].weight = weight;
-					lowest[i].vex = w;
+					lowest[i].vex = w;  
 				}
 			}
 		}
