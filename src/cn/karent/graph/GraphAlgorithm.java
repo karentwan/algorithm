@@ -39,15 +39,15 @@ public class GraphAlgorithm {
 	}
 	
 	class VexArcPair {
-		int vex; // parent节点
+		int parent; 
 		int weight;
 		
 		public VexArcPair() {
 			
 		}
 		
-		public VexArcPair(int vex, int weight) {
-			this.vex = vex;
+		public VexArcPair(int parent, int weight) {
+			this.parent = parent;
 			this.weight = weight;
 		}
 	}
@@ -70,7 +70,7 @@ public class GraphAlgorithm {
 		}
 		int w = 0;
 		while( (w = findMin(lowest)) != -1 ) {
-			System.out.print("(" + (lowest[w].vex+1) + ", " + (w+1) + ", " + graph.getArcWeight(lowest[w].vex, w) + ") ");
+			System.out.print("(" + (lowest[w].parent+1) + ", " + (w+1) + ", " + graph.getArcWeight(lowest[w].parent, w) + ") ");
 			lowest[w].weight = 0;
 			// 更新lowest
 			for(int i = graph.firstAdjVex(w); i != -1; i = graph.nextAdjVex(w, i)) {
@@ -78,7 +78,7 @@ public class GraphAlgorithm {
 				// lowest[i].weight != 0 代表该节点不在集合U中(U是生成树的节点, S是未加入进来的节点)
 				if( lowest[i].weight != 0 && lowest[i].weight > weight) {
 					lowest[i].weight = weight;
-					lowest[i].vex = w;  
+					lowest[i].parent = w;  
 				}
 			}
 		}
@@ -158,25 +158,16 @@ public class GraphAlgorithm {
 		return graph;
 	}
 	
-	class MinPath {
-		int parent;
-		int weight;
-		public MinPath() {}
-		
-		public MinPath(int parent, int weight) {
-			this.parent = parent;
-			this.weight = weight;
-		}
-	}
-	
 	/**
 	 * 迪杰斯特拉算法, 最短路径
 	 */
 	public void dijkstra(int v) {
 		MGraph<String> graph = createMinPathGraph();
 		int n = graph.getVexNumber();
-		MinPath[] path = new MinPath[n];
-		path[v] = new MinPath(-1, 0);
+		// 保存v节点到该节点的路径
+		VexArcPair[] path = new VexArcPair[n];
+		path[v] = new VexArcPair(-1, 0);
+		// lowest保存该节点的直接父类, 但是weight确实从v到该节点的累加和
 		VexArcPair[] lowest = new VexArcPair[n];
 		lowest[v] = new VexArcPair(-1, 0);
 		for(int i = 0; i < n; i++) {
@@ -189,13 +180,13 @@ public class GraphAlgorithm {
 		int w = 0;
 		int k = v; // 保存顶点v的值
 		while((w = findMin(lowest)) != -1) {
-			v = lowest[w].vex;
+			v = lowest[w].parent;
 			int weight = graph.getArcWeight(v, w);
-			path[w] = new MinPath(v, weight);
+			path[w] = new VexArcPair(v, weight);
 			for(int j = graph.firstAdjVex(w); j != -1; j = graph.nextAdjVex(w, j)) {
 				if( lowest[w].weight + graph.getArcWeight(w, j) < lowest[j].weight) {
 					lowest[j].weight = lowest[w].weight + graph.getArcWeight(w, j);
-					lowest[j].vex = w;
+					lowest[j].parent = w;
 				}
 			}
 			lowest[w].weight = 0;  // lowest[w].weight设为0代表已经找到v到w的最短路径了
