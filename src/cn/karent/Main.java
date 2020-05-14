@@ -205,10 +205,13 @@ public class Main {
 	}
 	
 	public static void other() throws Exception{
-		Calc c = new Calc();
-		float result = c.calc("(4*(21.4+3.22))-80/20");
-		System.out.println("表达式求解的结果:" + result);
+//		Calc c = new Calc();
+//		float result = c.calc("(4*(21.4+3.22))-80/20");
+//		System.out.println("表达式求解的结果:" + result);
 //		c.calc("123456789");
+		Hanoi h = new Hanoi();
+//		h.hanoiRecursion(3, 'A', 'B', 'C');
+		h.hanoi(3, 'A', 'B', 'C');
 	}
 	
 	public static MGraph createGraph() {
@@ -250,7 +253,7 @@ public class Main {
 //		ds();
 //		str();
 //		tree();
-//		other();
-		graph();
+		other();
+//		graph();
 	}
 }

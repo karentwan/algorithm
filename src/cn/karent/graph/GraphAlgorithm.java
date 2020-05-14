@@ -164,10 +164,10 @@ public class GraphAlgorithm {
 	public void dijkstra(int v) {
 		MGraph<String> graph = createMinPathGraph();
 		int n = graph.getVexNumber();
-		// 保存v节点到该节点的路径
+		// parent保存v节点到该节点的的直接父类, weight是直接父类到该节点的权重
 		VexArcPair[] path = new VexArcPair[n];
 		path[v] = new VexArcPair(-1, 0);
-		// lowest保存该节点的直接父类, 但是weight确实从v到该节点的累加和
+		// 同path一样, parent保存该节点的直接父类, 但是weight确是从v到该节点的权重累加和
 		VexArcPair[] lowest = new VexArcPair[n];
 		lowest[v] = new VexArcPair(-1, 0);
 		for(int i = 0; i < n; i++) {
