@@ -209,9 +209,12 @@ public class Main {
 //		float result = c.calc("(4*(21.4+3.22))-80/20");
 //		System.out.println("表达式求解的结果:" + result);
 //		c.calc("123456789");
-		Hanoi h = new Hanoi();
-//		h.hanoiRecursion(3, 'A', 'B', 'C');
-		h.hanoi(3, 'A', 'B', 'C');
+//		Hanoi h = new Hanoi();
+//		h.hanoiRecursion(6, 'A', 'B', 'C');
+//		System.out.println("===============================");
+//		h.hanoi(6, 'A', 'B', 'C');
+		AStarSearch ass = new AStarSearch();
+		ass.runPath();
 	}
 	
 	public static MGraph createGraph() {
