@@ -34,6 +34,7 @@ public class LinkList<T> {
 		if( p != null) {
 			pre.next = p.next;
 		}
+		n--;
 	}
 	
 	public T get() {

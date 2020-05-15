@@ -4,6 +4,7 @@ import java.lang.Exception;
 import cn.karent.sort.*;
 import cn.karent.string.*;
 import cn.karent.tree.*;
+import cn.karent.tree.BalanceTree.BalanceTreeNode;
 import cn.karent.other.*;
 import cn.karent.graph.*;
 
@@ -194,14 +195,24 @@ public class Main {
 //		int[] data = {7, 5, 2, 4, 7, 5};
 //		HuffmanTree h = new HuffmanTree(data);
 //		h.generateHuffmanTree();
-		BinaryTreeNode<Character> root = createCharacterTree();
-		BinaryTree tree = new BinaryTree();
+//		BinaryTreeNode<Character> root = createCharacterTree();
+//		BinaryTree tree = new BinaryTree();
 //		tree.preOrderTraverseRecursion(root);
 //		tree.inOrderTraverseRecursion(root);
 //		tree.postOrderTraverseRecursion(root);
 //		tree.preOrderTraverse(root);
 //		tree.inOrderTraverse(root);
-		tree.postOrderTraverse(root);
+//		tree.postOrderTraverse(root);
+		BalanceTree balanceTree = new BalanceTree();
+		BalanceTreeNode root = null;
+		root = balanceTree.insert(root, 12);
+		root = balanceTree.insert(root, 75);
+		root = balanceTree.insert(root, 62);
+		root = balanceTree.insert(root, 88);
+		root = balanceTree.insert(root, 50);
+		root = balanceTree.insert(root, 25);
+		root = balanceTree.insert(root, 37);
+		balanceTree.preTraverse(root);
 	}
 	
 	public static void other() throws Exception{
@@ -255,8 +266,8 @@ public class Main {
 //		sort();
 //		ds();
 //		str();
-//		tree();
-		other();
+		tree();
+//		other();
 //		graph();
 	}
 }
