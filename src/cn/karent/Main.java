@@ -4,7 +4,7 @@ import java.lang.Exception;
 import cn.karent.sort.*;
 import cn.karent.string.*;
 import cn.karent.tree.*;
-import cn.karent.tree.BalanceTree.BalanceTreeNode;
+//import cn.karent.tree.AVLTree.BalanceTreeNode;
 import cn.karent.other.*;
 import cn.karent.graph.*;
 
@@ -203,8 +203,8 @@ public class Main {
 //		tree.preOrderTraverse(root);
 //		tree.inOrderTraverse(root);
 //		tree.postOrderTraverse(root);
-		BalanceTree balanceTree = new BalanceTree();
-		BalanceTreeNode root = null;
+		AVLTree balanceTree = new AVLTree();
+		AVLTree.AVLNode root = null;
 		root = balanceTree.insert(root, 12);
 		root = balanceTree.insert(root, 75);
 		root = balanceTree.insert(root, 62);
