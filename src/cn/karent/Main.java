@@ -203,16 +203,28 @@ public class Main {
 //		tree.preOrderTraverse(root);
 //		tree.inOrderTraverse(root);
 //		tree.postOrderTraverse(root);
-		AVLTree balanceTree = new AVLTree();
-		AVLTree.AVLNode root = null;
-		root = balanceTree.insert(root, 12);
-		root = balanceTree.insert(root, 75);
-		root = balanceTree.insert(root, 62);
-		root = balanceTree.insert(root, 88);
-		root = balanceTree.insert(root, 50);
-		root = balanceTree.insert(root, 25);
-		root = balanceTree.insert(root, 37);
-		balanceTree.preTraverse(root);
+//		AVLTree balanceTree = new AVLTree();
+//		AVLTree.AVLNode root = null;
+//		root = balanceTree.insert(root, 12);
+//		root = balanceTree.insert(root, 75);
+//		root = balanceTree.insert(root, 62);
+//		root = balanceTree.insert(root, 88);
+//		root = balanceTree.insert(root, 50);
+//		root = balanceTree.insert(root, 25);
+//		root = balanceTree.insert(root, 37);
+//		balanceTree.preTraverse(root);
+		RedBlackBST rbTree = new RedBlackBST();
+		RedBlackBST.RedBlackNode root = null;
+		root = rbTree.insert(root, 1);
+		root = rbTree.insert(root, 5);
+		root = rbTree.insert(root, 6);
+		root = rbTree.insert(root, 7);
+		root = rbTree.insert(root, 12);
+		root = rbTree.insert(root, 13);
+		root = rbTree.insert(root, 19);
+		root = rbTree.insert(root, 30);
+		root = rbTree.insert(root, 35);
+		rbTree.preOrderTraverse(root);
 	}
 	
 	public static void other() throws Exception{

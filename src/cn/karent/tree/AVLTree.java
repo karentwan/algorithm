@@ -1,4 +1,6 @@
 package cn.karent.tree;
+import cn.karent.sort.Compare;
+import cn.karent.sort.CompareIntImp;
 
 /**
  * 二叉平衡树
@@ -12,16 +14,26 @@ public class AVLTree {
 	}
 	
 	public class AVLNode {
-		int data;               // 数据
+		Object data;               // 数据
 		AVLNode lchild; // 左子树 
 		AVLNode rchild; // 右子树
 		Factor balanceFactor = Factor.EQ;      // 平衡因子
 		
 		public AVLNode() {}
 		
-		public AVLNode(int data) {
+		public AVLNode(Object data) {
 			this.data = data;
 		}
+	}
+	
+	private Compare c = null;
+	
+	public AVLTree() {
+		this.c = new CompareIntImp();
+	}
+	
+	public AVLTree(Compare c) {
+		this.c = c;
 	}
 	
 	/**
@@ -58,7 +70,6 @@ public class AVLTree {
 			result = rightRotate(node);
 			break;
 		case RIGHT:  // LR
-			// 先左旋
 			AVLNode C = B.rchild;
 			switch( C.balanceFactor ) {
 			case LEFT:
@@ -133,7 +144,7 @@ public class AVLTree {
 	 * @param data
 	 * @return 当前节点
 	 */
-	public AVLNode insert(AVLNode node, int data) {
+	public AVLNode insert(AVLNode node, Object data) {
 		// 边界条件
 		if( node == null) {
 			AVLNode n = new AVLNode(data);
@@ -141,11 +152,11 @@ public class AVLTree {
 			result = n;
 			return n;
 		}
-		if( data == node.data) {
+		if( c.compare(data, node.data) == 0) {
 			taller = false;
 			result = node;
 			return node;
-		} else if( data < node.data ){  // 应该插入左子树
+		} else if( c.compare(data, node.data) < 0 ){  // 应该插入左子树
 			AVLNode n = insert(node.lchild, data);
 			node.lchild = n;
 			n = node;
