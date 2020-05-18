@@ -215,15 +215,24 @@ public class Main {
 //		balanceTree.preTraverse(root);
 		RedBlackBST rbTree = new RedBlackBST();
 		RedBlackBST.RedBlackNode root = null;
-		root = rbTree.insert(root, 1);
-		root = rbTree.insert(root, 5);
-		root = rbTree.insert(root, 6);
-		root = rbTree.insert(root, 7);
-		root = rbTree.insert(root, 12);
-		root = rbTree.insert(root, 13);
+//		root = rbTree.insert(root, 1);
+//		root = rbTree.insert(root, 5);
+//		root = rbTree.insert(root, 6);
+//		root = rbTree.insert(root, 7);
+//		root = rbTree.insert(root, 12);
+//		root = rbTree.insert(root, 13);
+//		root = rbTree.insert(root, 19);
+//		root = rbTree.insert(root, 30);
+//		root = rbTree.insert(root, 35);
 		root = rbTree.insert(root, 19);
+		root = rbTree.insert(root, 5);
 		root = rbTree.insert(root, 30);
+		root = rbTree.insert(root, 1);
+		root = rbTree.insert(root, 12);
 		root = rbTree.insert(root, 35);
+		root = rbTree.insert(root, 7);
+		root = rbTree.insert(root, 13);
+		root = rbTree.insert(root, 6);
 		rbTree.preOrderTraverse(root);
 	}
 	

@@ -63,9 +63,81 @@ public class RedBlackBST {
 	}
 	
 	/**
-	 * 调整完毕后，返回根节点
-	 * @param node
-	 * @return
+	 * 将旋转之后的节点p附加到parent中, 其中parent是oldNode的parent
+	 * @param p 旋转之后的节点
+	 * @param parent oldNode的双亲节点, 附加之后p的节点
+	 * @param oldNode 旋转之前的节点
+	 */
+	private void attachNodeToParent(RedBlackNode p, RedBlackNode parent, RedBlackNode oldNode) {
+		if( parent != null ) {
+			if( parent.left == oldNode) {
+				parent.left = p;
+				p.parent = parent;
+			} else {
+				parent.right = p;
+				p.parent = parent;
+			}
+		}
+	}
+	
+	private RedBlackNode leftBalance(RedBlackNode p, RedBlackNode parent, RedBlackNode grandparent) {
+		// 如果叔叔节点是红色, 那么只需要变色即可
+		if( grandparent.right.color == Color.RED) { 
+			parent.color = Color.BLACK;
+			grandparent.right.color = Color.BLACK;
+			grandparent.color = Color.RED;
+			p = grandparent;
+		} else {  // 如果叔叔节点是黑色, 那么就要分情况旋转
+			// 如果是双亲节点的左孩子, 那么直接右旋即可(对应AVL树里面的LL)
+			if( parent.left == p) {
+				parent.color = Color.BLACK;
+				grandparent.color = Color.RED;
+				parent = grandparent.parent;
+				p = rightRotate(grandparent);
+				attachNodeToParent(p, parent, grandparent);
+			} else {  // 如果是双亲节点的右孩子, 那么需要先左旋再右旋(对应AVL树里面的LR)
+				p.color = Color.BLACK;
+				grandparent.color = Color.RED;
+				grandparent.left = leftRotate(parent);
+				parent = grandparent.parent;
+				p = rightRotate(grandparent);
+				attachNodeToParent(p, parent, grandparent);
+			}
+		}
+		return p;
+	}
+	
+	private RedBlackNode rightBalance(RedBlackNode p, RedBlackNode parent, RedBlackNode grandparent) {
+		if( grandparent.left.color == Color.RED) { // 只需要变色即可
+			parent.color = Color.BLACK;
+			grandparent.left.color = Color.BLACK;
+			grandparent.color = Color.RED;
+			p = grandparent;
+		} else {  // 需要旋转
+			// 如果是双亲节点的右孩子, 那么直接左旋即可(相当于AVL树里面的RR)
+			if( parent.right == p) {
+				parent.color = Color.BLACK;
+				grandparent.color = Color.RED;
+				parent = grandparent.parent;
+				p = leftRotate(grandparent);
+				attachNodeToParent(p, parent, grandparent);
+			} else {  // 如果是双亲节点的左孩子, 那么需要先右旋再左旋(相当于AVL树里面的RL)
+				p.color = Color.BLACK;
+				grandparent.color = Color.RED;
+				grandparent.left = rightRotate(parent);
+				parent = grandparent.parent;
+				p = leftRotate(grandparent);
+				attachNodeToParent(p, parent, grandparent);
+			}
+		}
+		return p;
+	}
+	
+	/**
+	 * 调整完毕后, 当调整一直打到了根节点的时候说明根节点已经改变了, 此时需要返回根节点
+	 * 如果没有调整到根节点, 那么就直接返回空就可以了
+	 * @param node 待调整的节点
+	 * @return 根节点或者空
 	 */
 	private RedBlackNode nodeAdjust(RedBlackNode node) {
 		RedBlackNode p = node;
@@ -74,85 +146,11 @@ public class RedBlackBST {
 		while( parent != null && parent.color == Color.RED && parent.color == p.color) {
 			grandparent = parent.parent;
 			if( parent == grandparent.left) {  // 如果双亲节点是祖父节点的左子树
-				if( grandparent.right.color == Color.RED) { // 只需要变色即可
-					parent.color = Color.BLACK;
-					grandparent.right.color = Color.BLACK;
-					grandparent.color = Color.RED;
-					p = grandparent;
-					parent = p.parent;
-				} else {  // 需要旋转
-					// 如果是双亲节点的左孩子, 那么直接右旋即可
-					if( parent.left == p) {
-						parent.color = Color.BLACK;
-						grandparent.color = Color.RED;
-						parent = grandparent.parent;
-						p = rightRotate(grandparent);
-						if( parent != null ) {
-							if( parent.left == grandparent) {
-								parent.left = p;
-								p.parent = parent;
-							} else {
-								parent.right = p;
-								p.parent = parent;
-							}
-						}
-					} else {  // 如果是双亲节点的右孩子, 那么需要先左旋再右旋
-						p.color = Color.BLACK;
-						grandparent.color = Color.RED;
-						grandparent.left = leftRotate(parent);
-						parent = grandparent.parent;
-						p = rightRotate(grandparent);
-						if( parent != null) {
-							if( parent.left == grandparent) {
-								parent.left = p;
-								p.parent = parent;
-							} else {
-								parent.right = p;
-								p.parent = parent;
-							}
-						}
-					}
-				}
+				p = leftBalance(p, parent, grandparent);
+				parent = p.parent;
 			} else { // 如果双亲节点是祖父节点的右子树
-				if( grandparent.left.color == Color.RED) { // 只需要变色即可
-					parent.color = Color.BLACK;
-					grandparent.left.color = Color.BLACK;
-					grandparent.color = Color.RED;
-					p = grandparent;
-					parent = p.parent;
-				} else {  // 需要旋转
-					// 如果是双亲节点的右孩子, 那么直接左旋即可
-					if( parent.right == p) {
-						parent.color = Color.BLACK;
-						grandparent.color = Color.RED;
-						parent = grandparent.parent;
-						p = leftRotate(grandparent);
-						if( parent != null ) {
-							if( parent.left == grandparent) {
-								parent.left = p;
-								p.parent = parent;
-							} else {
-								parent.right = p;
-								p.parent = parent;
-							}
-						}
-					} else {  // 如果是双亲节点的左孩子, 那么需要先右旋再左旋
-						p.color = Color.BLACK;
-						grandparent.color = Color.RED;
-						grandparent.left = rightRotate(parent);
-						parent = grandparent.parent;
-						p = leftRotate(grandparent);
-						if( parent != null) {
-							if( parent.left == grandparent) {
-								parent.left = p;
-								p.parent = parent;
-							} else {
-								parent.right = p;
-								p.parent = parent;
-							}
-						}
-					}
-				}
+				p = rightBalance(p, parent, grandparent);
+				parent = p.parent;
 			}
 		}
 		// 如果parent为空, 说明此时的p指向的是根节点, 此时直接将根节点的颜色变为黑色
