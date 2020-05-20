@@ -213,8 +213,8 @@ public class Main {
 //		root = balanceTree.insert(root, 25);
 //		root = balanceTree.insert(root, 37);
 //		balanceTree.preTraverse(root);
-		RedBlackBST rbTree = new RedBlackBST();
-		RedBlackBST.RedBlackNode root = null;
+		RedBlackBST<Integer> rbTree = new RedBlackBST<Integer>();
+		RedBlackBST<Integer>.RedBlackNode root = null;
 //		root = rbTree.insert(root, 1);
 //		root = rbTree.insert(root, 5);
 //		root = rbTree.insert(root, 6);
@@ -234,6 +234,8 @@ public class Main {
 		root = rbTree.insert(root, 13);
 		root = rbTree.insert(root, 6);
 		rbTree.preOrderTraverse(root);
+		System.out.println();
+		rbTree.inOrderTraverse(root);
 	}
 	
 	public static void other() throws Exception{
@@ -245,8 +247,23 @@ public class Main {
 //		h.hanoiRecursion(6, 'A', 'B', 'C');
 //		System.out.println("===============================");
 //		h.hanoi(6, 'A', 'B', 'C');
-		AStarSearch ass = new AStarSearch();
-		ass.runPath();
+//		AStarSearch ass = new AStarSearch();
+//		ass.runPath();
+//		FindSwapNumber fs = new FindSwapNumber();
+//		Integer[] nums = {1, 2, 7, 4, 5, 6, 3};
+//		fs.swapNumber(nums);
+//		print(nums);
+		LRUCache lru = new LRUCache(5);
+		lru.put("001", "用户1信息");
+		lru.put("002", "用户1信息");
+		lru.put("003", "用户1信息");
+		lru.put("004", "用户1信息");
+		lru.put("005", "用户1信息");
+		System.out.println(lru.get("002"));
+		lru.put("004", "用户2信息更新");
+		lru.put("006", "用户6信息");
+		System.out.println(lru.get("001"));
+		System.out.println(lru.get("006"));
 	}
 	
 	public static MGraph createGraph() {
@@ -287,8 +304,8 @@ public class Main {
 //		sort();
 //		ds();
 //		str();
-		tree();
-//		other();
+//		tree();
+		other();
 //		graph();
 	}
 }

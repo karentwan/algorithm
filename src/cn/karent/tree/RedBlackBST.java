@@ -1,11 +1,13 @@
 package cn.karent.tree;
+import cn.karent.sort.Compare;
+import cn.karent.sort.CompareIntImp;
 
 /**
  * 红黑树
  * @author wan
  *
  */
-public class RedBlackBST {
+public class RedBlackBST<T> {
 	
 	private enum Color {
 		RED, BLACK
@@ -13,25 +15,37 @@ public class RedBlackBST {
 	
 	private RedBlackNode NIL; // 所有新插入的节点的孩子节点都是这个节点
 	
+	private Compare c;
+	
 	public class RedBlackNode {
 		Color color = Color.RED;
 		RedBlackNode left;   // 左子树
 		RedBlackNode right;  // 右子树
 		RedBlackNode parent; // 双亲节点
-		int data;
+		Object data;
 		
 		public RedBlackNode() {}
 		
-		public RedBlackNode(int data) {
+		public RedBlackNode(Object data) {
 			this.data = data;
 			left = NIL;
 			right = NIL;
 		}
 	}
 	
-	public RedBlackBST() {
+	private void initNIL() {
 		NIL = new RedBlackNode();
 		NIL.color = Color.BLACK;
+	}
+	
+	public RedBlackBST() {
+		initNIL();
+		this.c = new CompareIntImp();
+	}
+	
+	public RedBlackBST(Compare c) {
+		initNIL();
+		this.c = c;
 	}
 	
 	/**
@@ -167,7 +181,7 @@ public class RedBlackBST {
 	 * @param data
 	 * @return
 	 */
-	public RedBlackNode insert(RedBlackNode root, int data) {
+	public RedBlackNode insert(RedBlackNode root, Object data) {
 		RedBlackNode pre = null;
 		RedBlackNode p = root;
 		if( p == null) {
@@ -176,18 +190,18 @@ public class RedBlackBST {
 			return p;
 		}
 		while( p != NIL ) {
-			if( p.data == data) {
+			if( c.compare(data, p.data) == 0 ) {
 				break;
 			} else {
 				pre = p;
-				if( data < p.data) 
+				if( c.compare(data, p.data) < 0 ) 
 					p = p.left;
 				else
 					p = p.right;
 			}
 		}
 		if( p == NIL) { // 未找到
-			if( data < pre.data) {
+			if( c.compare(data, pre.data) < 0 ) {
 				pre.left = new RedBlackNode(data);
 				pre.left.parent = pre;
 				p = pre.left;
@@ -207,8 +221,17 @@ public class RedBlackBST {
 		if( node == NIL) {
 			return;
 		}
-		System.out.print(node.data+" ");
+		System.out.print(node.color + "-" + node.data+" ");
 		preOrderTraverse(node.left);
 		preOrderTraverse(node.right);
+	}
+	
+	public void inOrderTraverse(RedBlackNode node) {
+		if( node == NIL) {
+			return;
+		}
+		inOrderTraverse(node.left);
+		System.out.print(node.color + "-" + node.data+" ");
+		inOrderTraverse(node.right);
 	}
 }
