@@ -213,8 +213,8 @@ public class Main {
 //		root = balanceTree.insert(root, 25);
 //		root = balanceTree.insert(root, 37);
 //		balanceTree.preTraverse(root);
-		RedBlackBST<Integer> rbTree = new RedBlackBST<Integer>();
-		RedBlackBST<Integer>.RedBlackNode root = null;
+//		RedBlackBST<Integer> rbTree = new RedBlackBST<Integer>();
+//		RedBlackBST<Integer>.RedBlackNode root = null;
 //		root = rbTree.insert(root, 1);
 //		root = rbTree.insert(root, 5);
 //		root = rbTree.insert(root, 6);
@@ -224,18 +224,26 @@ public class Main {
 //		root = rbTree.insert(root, 19);
 //		root = rbTree.insert(root, 30);
 //		root = rbTree.insert(root, 35);
-		root = rbTree.insert(root, 19);
-		root = rbTree.insert(root, 5);
-		root = rbTree.insert(root, 30);
-		root = rbTree.insert(root, 1);
-		root = rbTree.insert(root, 12);
-		root = rbTree.insert(root, 35);
-		root = rbTree.insert(root, 7);
-		root = rbTree.insert(root, 13);
-		root = rbTree.insert(root, 6);
-		rbTree.preOrderTraverse(root);
-		System.out.println();
-		rbTree.inOrderTraverse(root);
+//		root = rbTree.insert(root, 19);
+//		root = rbTree.insert(root, 5);
+//		root = rbTree.insert(root, 30);
+//		root = rbTree.insert(root, 1);
+//		root = rbTree.insert(root, 12);
+//		root = rbTree.insert(root, 35);
+//		root = rbTree.insert(root, 7);
+//		root = rbTree.insert(root, 13);
+//		root = rbTree.insert(root, 6);
+//		rbTree.preOrderTraverse(root);
+//		System.out.println();
+//		rbTree.inOrderTraverse(root);
+		int[] nums = {7, 5, 3, 9, 1, 2, 8, 6, 4};
+		SegmentTree st = new SegmentTree(nums);
+		int result = st.query(0, 3, 6);
+		System.out.println(result);
+		st.update(0, 5, 6, 3);
+		st.update(0, 4, 4, 1);
+		result = st.query(0, 3, 6);
+		System.out.println(result);
 	}
 	
 	public static void other() throws Exception{
@@ -304,8 +312,8 @@ public class Main {
 //		sort();
 //		ds();
 //		str();
-//		tree();
-		other();
+		tree();
+//		other();
 //		graph();
 	}
 }

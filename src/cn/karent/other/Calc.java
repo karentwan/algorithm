@@ -3,7 +3,6 @@ import cn.karent.ds.Stack;
 import java.lang.Exception;
 import cn.karent.ds.ArrayList;
 import java.util.regex.*;
-import java.math.*;
 
 public class Calc {
 	
