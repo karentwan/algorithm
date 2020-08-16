@@ -236,14 +236,16 @@ public class Main {
 //		rbTree.preOrderTraverse(root);
 //		System.out.println();
 //		rbTree.inOrderTraverse(root);
-		int[] nums = {7, 5, 3, 9, 1, 2, 8, 6, 4};
-		SegmentTree st = new SegmentTree(nums);
-		int result = st.query(0, 3, 6);
-		System.out.println(result);
-		st.update(0, 5, 6, 3);
-		st.update(0, 4, 4, 1);
-		result = st.query(0, 3, 6);
-		System.out.println(result);
+//		int[] nums = {7, 5, 3, 9, 1, 2, 8, 6, 4};
+//		SegmentTree st = new SegmentTree(nums);
+//		int result = st.query(0, 3, 6);
+//		System.out.println(result);
+//		st.update(0, 5, 6, 3);
+//		st.update(0, 4, 4, 1);
+//		result = st.query(0, 3, 6);
+//		System.out.println(result);
+		LoserTree lt = new LoserTree();
+		lt.loserTree();
 	}
 	
 	public static void other() throws Exception{

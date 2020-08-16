@@ -107,7 +107,6 @@ public class SegmentTree {
         }
         // 这个pushDown是传以前的lazy而不是当前的lazy
         pushDown(node, cur.l, cur.l, l, r);
-        int mid = (cur.l + cur.r) / 2;
         int result = 0;
         result = query(node * 2 + 1, l, r);
         result += query(node*2 + 2, l, r);
