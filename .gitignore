@@ -8,3 +8,5 @@ snapshot/
 readme.txt
 *.log
 .project
+*.iml
+out/
