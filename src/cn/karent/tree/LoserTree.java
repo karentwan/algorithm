@@ -25,9 +25,10 @@ public class LoserTree {
     }
 
     private void createLoserTree(int[] ls, int[] b, int k) {
+        b[k] = Integer.MIN_VALUE;
         // 初始化败者树
         for(int i = 0; i < ls.length; i++) {
-            ls[i] = i;
+            ls[i] = k;
         }
         // 开始调整第一轮败者树
         for(int i = k-1; i >= 0; i--) {
@@ -48,12 +49,12 @@ public class LoserTree {
      * 这里以5路归并排序为例
      */
     public void loserTree() {
-        int[][] data = {{6, 15, 25}, {12, 37, 48}, {10, 15, 16}, {9, 18, 20}, {20, 22, 40}};
+        int[][] data = {{10, 15, 16}, {9, 18, 20}, {20, 22, 40}, {6, 15, 25}, {12, 37, 48}};
         //败者树的叶子节点和非叶子节点之所以用两个数组来保存, 是因为叶子节点存储的是输入元素值, 非叶子节点存储的是下标值
-        int[] b = new int[5];  // 败者树叶子节点
+        int[] b = new int[6];  // 败者树叶子节点
         int[] ls = new int[5];  // 败者树非叶子节点
         int[] index = {1, 1, 1, 1, 1};
-        for(int i = 0; i < b.length; i++) {
+        for(int i = 0; i < data.length; i++) {
             b[i] = data[i][0];
         }
         createLoserTree(ls, b, 5);
