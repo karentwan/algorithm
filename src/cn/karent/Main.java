@@ -4,7 +4,6 @@ import java.lang.Exception;
 import cn.karent.sort.*;
 import cn.karent.string.*;
 import cn.karent.tree.*;
-//import cn.karent.tree.AVLTree.BalanceTreeNode;
 import cn.karent.other.*;
 import cn.karent.graph.*;
 
@@ -105,28 +104,28 @@ public class Main {
 	}
 	
 	public static void sort() {
-		Integer[] data = {49, 38, 65, 97, 76, 13, 27, 49, 37};	
-		Data[] d = {new Data(49, "a"), new Data(38, "b"), new Data(65, "c"), 
-				new Data(97, "xiao"), new Data(76, "hsd"), new Data(13, "ha"),
-				new Data(27, "xi"), new Data(37, "tt")};
-		Compare cd = new Compare() {
-
-			@Override
-			public int compare(Object o1, Object o2) {
-				Data d1 = (Data)o1;
-				Data d2 = (Data)o2;
-				return d1.item - d2.item;
-			}
-		};
-		Compare c = new Compare() {
-
-			@Override
-			public int compare(Object o1, Object o2) {
-				Integer item1 = (Integer)o1;
-				Integer item2 = (Integer)o2;
-				return item2 - item1;
-			}
-		};
+//		Integer[] data = {49, 38, 65, 97, 76, 13, 27, 49, 37};
+//		Data[] d = {new Data(49, "a"), new Data(38, "b"), new Data(65, "c"),
+//				new Data(97, "xiao"), new Data(76, "hsd"), new Data(13, "ha"),
+//				new Data(27, "xi"), new Data(37, "tt")};
+//		Compare cd = new Compare() {
+//
+//			@Override
+//			public int compare(Object o1, Object o2) {
+//				Data d1 = (Data)o1;
+//				Data d2 = (Data)o2;
+//				return d1.item - d2.item;
+//			}
+//		};
+//		Compare c = new Compare() {
+//
+//			@Override
+//			public int compare(Object o1, Object o2) {
+//				Integer item1 = (Integer)o1;
+//				Integer item2 = (Integer)o2;
+//				return item2 - item1;
+//			}
+//		};
 		// 冒泡排序
 //		BubbleSort<Integer> b1 = new BubbleSort<Integer>(c);
 //		print(data);
@@ -160,10 +159,13 @@ public class Main {
 //		print(data);
 //		b.sort(data);
 //		print(data);
-		MergeSort<Integer> m = new MergeSort<Integer>(c);
-		print(data);
-		m.sort(data);
-		print(data);
+//		MergeSort<Integer> m = new MergeSort<Integer>(c);
+//		print(data);
+//		m.sort(data);
+//		print(data);
+		BitmapSort bs = new BitmapSort();
+		int[] arrs = {9, 5, 7, 8, 12, 32, 6, 4, 1, 2, 3};
+		bs.sort(arrs);
 	}
 	
 	public static void str() {
@@ -311,10 +313,10 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws Exception{
-//		sort();
+		sort();
 //		ds();
 //		str();
-		tree();
+//		tree();
 //		other();
 //		graph();
 	}

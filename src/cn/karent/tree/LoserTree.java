@@ -2,10 +2,10 @@ package cn.karent.tree;
 
 /**
  * 败者树, 多路平衡归并排序, 一般可用在外排
- * 大文件排序：
- * 1.首先将文件分割成一个个小文件
+ * 大文件排序:
+ * 1. 首先将文件分割成一个个小文件
  * 2. 在内存中对小文件进行排序
- * 3. 使用多路平衡归并排序来对排好序的小文件再进行排序(2路平衡排序是将两个排好序的小文件进行排序，
+ * 3. 使用多路平衡归并排序来对排好序的小文件再进行排序(2路平衡排序是将两个排好序的小文件进行排序,
  * 多路平衡归并排序是对多个小文件来进行排序, 使用败者树就可以避免重复排序)
  */
 public class LoserTree {
@@ -34,7 +34,6 @@ public class LoserTree {
         for(int i = k-1; i >= 0; i--) {
             adjust(ls, b, i, k);
         }
-
     }
 
     private void input(int[][] data, int[] b, int[] index, int i) {
@@ -51,7 +50,7 @@ public class LoserTree {
     public void loserTree() {
         int[][] data = {{10, 15, 16}, {9, 18, 20}, {20, 22, 40}, {6, 15, 25}, {12, 37, 48}};
         //败者树的叶子节点和非叶子节点之所以用两个数组来保存, 是因为叶子节点存储的是输入元素值, 非叶子节点存储的是下标值
-        int[] b = new int[6];  // 败者树叶子节点
+        int[] b = new int[6];   // 败者树叶子节点
         int[] ls = new int[5];  // 败者树非叶子节点
         int[] index = {1, 1, 1, 1, 1};
         for(int i = 0; i < data.length; i++) {
