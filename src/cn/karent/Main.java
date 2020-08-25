@@ -169,9 +169,16 @@ public class Main {
 	}
 	
 	public static void str() {
-		KMP k = new KMP("abd");
-		int loc = k.match("abaabcac");
-		System.out.println(loc);
+//		KMP k = new KMP("abd");
+//		int loc = k.match("abaabcac");
+//		System.out.println(loc);
+		Manacher m = new Manacher();
+		int result = m.palindrome("abbababa");
+		System.out.println(result);
+		result = m.palindrome("abcbbabbc");
+		System.out.println(result);
+		result = m.palindrome("abccbaba");
+		System.out.println(result);
 	}
 	
 	public static BinaryTreeNode<Character> createCharacterTree() {
@@ -313,9 +320,9 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws Exception{
-		sort();
+//		sort();
 //		ds();
-//		str();
+		str();
 //		tree();
 //		other();
 //		graph();
