@@ -163,9 +163,12 @@ public class Main {
 //		print(data);
 //		m.sort(data);
 //		print(data);
-		BitmapSort bs = new BitmapSort();
-		int[] arrs = {9, 5, 7, 8, 12, 32, 6, 4, 1, 2, 3};
-		bs.sort(arrs);
+//		BitmapSort bs = new BitmapSort();
+		Integer[] arrs = {9, 5, 7, 8, 12, 32, 6, 4, 1, 2, 3};
+//		bs.sort(arrs);
+        RadixSort rs = new RadixSort();
+        rs.sort(arrs, true);
+        print(arrs);
 	}
 	
 	public static void str() {
@@ -320,9 +323,9 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws Exception{
-//		sort();
+		sort();
 //		ds();
-		str();
+//		str();
 //		tree();
 //		other();
 //		graph();
